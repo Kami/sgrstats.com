@@ -1,0 +1,29 @@
+th
+{
+	border-bottom: 1px solid #e6e1dd;
+}
+
+td
+{
+	padding: 5px;
+}
+
+.rank
+{
+	text-align: center;
+}
+
+td.betterhover, tbody tr:hover td
+{
+	background-color: #3E3E3E !important;
+}
+
+table
+{
+	text-align: center;
+}
+
+p.updated
+{
+	text-align: center;
+}

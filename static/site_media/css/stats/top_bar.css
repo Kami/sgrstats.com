@@ -1,0 +1,53 @@
+span.sgreen{
+	color: #56eb3e;
+}
+span.sred{
+	color: #a83131;
+}
+
+
+#statsfor{
+	padding-top: 45px;
+	color: #c9c9c9;
+	font: 9pt Arial;
+	text-align: center;
+	line-height: 93%;
+}
+#memidbig{
+	font: 1.3em arial;
+}
+#link_account
+{
+	font-size: 0.95em;
+}
+#statsforbox{
+	font: 9pt Arial;
+	float: left;
+	height: 41px;
+	width: 95px;
+	padding: 5px 0 0 0;
+}
+#statsfor_user{
+	width: 123px;
+	height: 41px;
+	background: transparent;
+	float: left;
+}
+#statsforleft{
+	width: 9px;
+	height: 41px;
+	background: url('/site_media/images/stats/top_bar/statsforleft.png');
+	float: left;
+}
+#statsforcontent{
+	width: 496px;
+	height: 41px;
+	background: #161616;
+	float: left;
+}
+#statsforright{
+	width: 116px;
+	height: 41px;
+	background: url('/site_media/images/stats/top_bar/statsforright.png');
+	float: left;
+}

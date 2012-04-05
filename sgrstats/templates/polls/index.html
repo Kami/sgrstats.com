@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block feed_urls %}<link rel="alternate" type="application/rss+xml" title="Latest polls" href="{% url polls_feed %}" />{% endblock %}
+{% block title %}Polls{% endblock %}
+
+{% block content %}
+<h1>Polls</h1>
+<p>Share your opinion about Stargate Resistance by voting in our polls!</p>
+
+{% include "polls/poll_list.html" %}
+{% endblock %}

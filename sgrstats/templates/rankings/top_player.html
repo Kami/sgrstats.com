@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_rankings" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block scripts %}
+	{% assets "js_rankings" %}
+	    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+	{% endassets %}
+{% endblock %}
+{% block title %}Top player{% endblock %}
+
+{% block content_top %}
+	{% include "rankings/navigation.html" %}
+{% endblock %}
+{% block content %}
+<br /><br />
+<h1>Top player</h1>
+<p>Here you can see who is currently the top player.</p>
+
+<script type="text/javascript">
+$(document).ready(function() 
+{
+	var qs;
+	
+	function initializeQuickSearchAndHover(clearCache)
+	{
+		var clearCacheArg = clearCache || false;
+		
+		if (clearCacheArg == true)
+		{
+			qs.cache();
+		}
+		
+		qs = $('input#search_term').quicksearch('table#top_players" tbody tr');
+		$("#top_players").columnHover({eachCell: true, hoverClass: "betterhover"});
+	}
+
+	$("#top_players")
+	.tablesorter(
+	{
+		widthFixed: true,
+	    headers:
+	    {
+	    	0:
+	    	{
+    			sorter: false
+	    	},
+	    	9:
+	        {
+	    		sorter: 'time_played' 
+	        } 
+	    },
+	    sortList:[[2,1]]
+	})
+	.tablesorterPager({container: $("#pager")});
+	
+	initializeQuickSearchAndHover();
+
+	// Re-initialize the column hover and quick search plugin after sort column change
+	$('#top_players').bind('sortEnd', function()
+	{
+		initializeQuickSearchAndHover();
+	});
+
+	/* Update the quicksearch cache and re-initialize the column hover plugin
+	on page change and page size change */
+	$('span.link').click(function()
+	{
+		initializeQuickSearchAndHover(true);
+	});
+
+	$('.pagesize').change(function()
+	{
+		initializeQuickSearchAndHover(true);
+	});
+
+	$('th').click(function()
+	{
+		initializeQuickSearchAndHover(true);
+	});
+});
+</script>
+
+<div id="filters">
+	<div id="find_player">
+	<form id="search_form">
+	    <label for="search_term">Nickname:</label> <input type="text" name="search_term" id="search_term">
+	</form>
+	</div>
+	<div id="pager" class="pager"> 
+		<form> 
+			<span class="first link"><<</span> 
+			<span class="prev link"><</span> 
+			<input type="text" class="pagedisplay"/>
+			<span class="next link">></span> 
+			<span class="last link">>></span> 
+			<select class="pagesize"> 
+				<option selected="selected" value="10">10</option> 
+				<option value="20">20</option> 
+				<option value="30">30</option> 
+				<option value="40">40</option> 
+				<option value="60">60</option> 
+				<option value="100">100</option> 
+			</select> 
+		</form> 
+	</div>
+</div>
+<table class="top_players tablesorter" id="top_players">
+	<thead> 
+	<tr>
+		<th class="rank">#</th>
+		<th>Nickname</th>
+		<th>EXP</th>
+		<th>K/D ratio</th>
+		<th>Kills</th>
+		<th>Headshots</th>
+		<th>Deaths</th>
+		<th>Damage given</th>
+		<th>Accuracy</th>
+		<th>Time played</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for player in players %}
+		{% if not player.hide %}
+		<tr>
+			<td class="rank">
+				{% if player.rank <= 3 %}
+					<img src="{{ MEDIA_URL }}/site_media/images/rankings/smallcup{{ player.rank }}.gif" />
+				{% else %}
+					{{ player.rank }}
+				{% endif %}
+			</td>
+			<td><a href="{% url stats_summary account_id=player.account_id %}" target="_blank">{{ player.username }}</a></td>
+			<td>{{ player.data.SGR_Account_ExperiencePointsEarned }}</td>
+			<td>{{ player.data.SGR_Account_KillDeathRatio|floatformat:4 }}</td>
+			<td>{{ player.data.SGR_Account_KillsTotal }}</td>
+			<td>{{ player.data.SGR_Account_Headshots }}</td>
+			<td>{{ player.data.SGR_Account_KilledTotal }}</td>
+			<td>{{ player.data.SGR_Account_DamageDealtTotal }}</td>
+			<td><a href="javascript:void(0);" class="tip" tip="<strong>{{ player.data.SGR_Account_ShotsFired }}</strong> shots fired, <strong>{{ player.data.SGR_Account_ShotsHit }}</strong> shots hit">{{ player.data.SGR_Account_HitRatio|floatformat:"2" }} %</a></td>
+			<td>{{ player.data.SGR_Account_TimePlayedTotalFormatted }}</td>
+		</tr>
+		{% endif %}
+	{% endfor %}
+	</tbody>
+</table>
+
+<p>Note: Only players with a linked account are displayed on this page (<a href="/help/player-rankings/" target="_blank">more info</a>).</p>
+{% include "rankings/date_updated.html" %}
+{% endblock %}

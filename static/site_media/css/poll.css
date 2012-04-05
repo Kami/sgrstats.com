@@ -1,0 +1,35 @@
+#poll_results
+{
+	margin-left: auto;
+	margin-right: auto;
+	width: 800px;
+}
+
+div.option
+{
+	width: 200px;
+}
+
+div.choice_option
+{
+	padding: 5px 0 15px 0;
+}
+
+div.bar_container
+{
+	width: 160px;
+}
+
+div.bar_choice
+{
+	background-color: #0066cc;
+  	height: 20px;
+	float: left;
+}
+
+div.percentage
+{
+	font-weight: bold;
+	float: right;
+	padding-top: 5px;
+}

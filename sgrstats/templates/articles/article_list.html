@@ -1,0 +1,7 @@
+{% if articles %}
+	{% for article in articles %}
+		<p><a href="{% url article_details title_slug=article.title_slug %}">{{ article.title }}</a> - <strong>{{ article.date_published|date:"DATETIME_FORMAT" }}</strong> in <strong>{% for category in article.get_categories %} <a href="{% url articles_category category_id=category.term_id %}">{{ category.term.term }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</strong> by <strong>{{ article.author }}</strong></p>
+	{% endfor %}
+{% else %}
+	<p>Currently, there are no articles :-(<br /><br />Please come back again later or help using make our site better by <a href="/about/">joining our team</a>.</p>
+{% endif %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block feed_urls %}<link rel="alternate" type="application/rss+xml" title="Latest news" href="{% url news_feed %}" />{% endblock %}
+{% block title %}{{ news.title }}{% endblock %}
+
+{% block content %}
+{% load comments %}
+{% get_comment_count for news as comment_count %}
+
+<h1>{{ news.title }}</h1>
+<p class="article_content">
+	{{ news.excerpt.rendered|safe }}
+	{{ news.body.rendered|safe }}
+</p>
+<p class="news_meta">Posted by: <strong>{{ news.author }}</strong> in <strong>{% for category in news.get_categories %} <a href="{% url news_category category_id=category.term_id %}">{{ category.term.term }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</strong> on <strong>{{ news.date_published|date:"DATETIME_FORMAT" }}</strong> | Comments: ({{ comment_count }})</p>
+
+<div id="news_comments">
+<h1 name="comments">Responses to "{{ news.title }}" ({{ comment_count }})</h1>
+{% render_comment_list for news %}
+
+<h1 name="leave_comment">Leave a comment</h1>
+{% if user.is_authenticated %}
+	{% render_comment_form for news %}
+{% else %}
+	<p>You need to be <a href="{% url registration_register %}">registered</a> user to be able to post a comment.</p>
+{% endif %}
+</div>
+{% endblock %}

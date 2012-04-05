@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_rankings" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block scripts %}
+	{% assets "js_rankings" %}
+	    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+	{% endassets %}
+{% endblock %}
+{% block title %}Top class{% endblock %}
+
+{% block content_top %}
+	{% include "rankings/navigation.html" %}
+{% endblock %}
+{% block content %}
+{% load lookup_tag %}
+<br /><br />
+<h1>Top class</h1>
+<p>Here you can see which class is currently the best / most popular one.</p>
+
+<script type="text/javascript">
+$(document).ready(function() 
+{
+	$("#top_classes")
+	.tablesorter(
+	{
+		widthFixed: true,
+	    headers:
+	    {
+	    	2:
+	    	{
+				sorter: 'digit'
+	    	},
+			5:
+	        {
+	    		sorter: 'time_played' 
+	        } 
+	    },
+	    sortList:[[1,1]]
+	});
+
+	$("#top_classes").columnHover({eachCell: true, hoverClass: "betterhover"});
+});
+</script>
+
+<table class="tablesorter" id="top_classes">
+	<thead> 
+	<tr>
+		<th>Class</th>
+		<th>Kills</th>
+		<th>Headshots</th>
+		<th>Deaths</th>
+		<th>Damage dealt</th>
+		<th>Time played</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for class in classes %}
+	<tr>
+		<td><a class="tip" tip="<h3>{{ class }}</h3><br /><img src='/site_media/images/stats/summary/{{ class|lower }}_main.png' />">{{ class }}</a></td>
+		<td>{{ classes|lookup:class|lookup:"KillsTotal" }}</td>
+		<td>{{ classes|lookup:class|lookup:"Headshots" }}</td>
+		<td>{{ classes|lookup:class|lookup:"KilledTotal" }}</td>
+		<td>{{ classes|lookup:class|lookup:"DamageDealtTotal" }}</td>
+		<td>{{ classes|lookup:class|lookup:"TimePlayedTotalFormatted" }}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+<p>Note: All the values are "totals" - values from all the players summed together.</p>
+{% include "rankings/date_updated.html" %}
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_registration" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block scripts %}
+	{% assets "js_registration" %}
+	    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+	{% endassets %}
+{% endblock %}
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+<h1>Registration</h1>
+
+{% if form.errors %}
+    <div class="errors">
+        <p>Error while submitting form:</p>
+        {% for field in form %}
+        	{% if field.errors %}
+        		<strong>{{ field.label_tag }}:</strong> {{ field.errors }}
+        	{% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+	$('#form').validationEngine();
+});
+</script>
+<form action="" id="form" method="post">{% csrf_token %}
+   <table class="form">
+	<tr>
+		<th style="width:110px">Username:</th> <td><input id="id_username" class="required validate[required]" name="username" maxlength="30" type="text"></td>
+	</tr>
+	<tr>
+		<th>Email address:</th> <td><input id="id_email" class="required validate[required,custom[email]]" name="email" maxlength="75" type="text"></td>
+	</tr>
+	<tr>
+		<th>Password:</th> <td><input id="id_password1" class="required validate[required]" name="password1" type="password"></td>
+	</tr>
+	<tr>
+		<th>Password (again):</th> <td><input id="id_password2" class="required validate[required,confirm[id_password1]]" name="password2" type="password"></td>
+	</tr>
+	<tr>
+		<td colspan="2" style="width:110px">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{{ form.captcha.label_tag }}</td>
+	</tr>
+	<tr class="captcha">
+		<td colspan="2" class="captcha"> {{ form.captcha }}</td>
+	</tr>
+	</table>
+
+	<p><input type="checkbox" name="tos" id="tos" class="validate[minCheckbox[1]]" /> I have read and agree with website's <a href="/about/terms-of-service/" target="_blank">TOS</a>.</p>
+	<p><input type="submit" name="bsignup" value="Sign up"></p>
+</form>
+{% endblock %}

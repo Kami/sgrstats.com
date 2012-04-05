@@ -1,0 +1,7 @@
+Hi,
+
+Thank you for your registration. To activate your account lick on the link below :
+
+http://www.sgrstats.com{% url registration_activate activation_key %}.
+
+If the link is not clickable, please copy it to your browser address bar.

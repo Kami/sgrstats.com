@@ -1,0 +1,6 @@
+<script src="{{ MEDIA_URL }}/site_media/js/hide_message.js" type="text/javascript"></script>
+{% if messages %}
+	{% for message in messages %}
+		<div id="{{ message.tags }}">{{ message|safe }}</div>
+	{% endfor %}
+{% endif %}

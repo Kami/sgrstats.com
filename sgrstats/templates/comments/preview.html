@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Preview your comment" %}{% endblock %}
+
+{% block content %}
+  {% load comments %}
+  {% load markup %}
+  <h1>Preview your comment</h1>
+  
+  {% if form.errors %}
+    <div class="errors">
+        <p>Error while submitting form:</p>
+        {% for field in form %}
+        	{% if field.errors %}
+        		<strong>{{ field.label_tag }}:</strong> {{ field.errors }}
+        	{% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+  
+  <form action="{% comment_form_target %}" method="post">{% csrf_token %}
+    {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+    {% if not form.errors %}
+      <blockquote>{{ comment|markdown }}</blockquote>
+    {% endif %}
+    {% include "comments/form_fields.html" %}
+    <p class="submit">
+    <input type="submit" name="submit" class="submit-post" value="{% trans "Post" %}" />
+    <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" />
+    </p>
+  </form>
+{% endblock %}

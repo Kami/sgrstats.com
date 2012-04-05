@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block feed_urls %}<link rel="alternate" type="application/rss+xml" title="Latest news in category {{ category_title }}" href="{% url news_category_feed category_id=category_id %}" />{% endblock %}
+{% block title %}News in {{ category_title }}{% endblock %}
+
+{% block content %}
+<h1>News in category "{{ category_title }}"</h1>
+
+{% include "news/news_list.html" %}
+
+<p>&raquo; <a href="{% url news_index %}">Back to the news</a></p>
+{% endblock %}

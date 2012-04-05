@@ -1,0 +1,23 @@
+django-extensions
+-e hg+http://bitbucket.org/ubernostrum/django-registration#egg=django-registration
+django-markupfield
+django-piston
+django-debug-toolbar
+django-memcache-status
+-e git://github.com/jbalogh/django-debug-cache-panel.git#egg=django-debug-cache-panel
+-e git://github.com/andymccurdy/redis-py.git#egg=redis
+-e git://github.com/sebleier/django-redis-cache.git#egg=django-redis-cache
+-e git://github.com/Kami/django-assets.git#egg=django-assets
+django-simple-captcha
+
+simplejson
+feedparser
+markdown
+mysql-python
+pymongo
+PyOFC2
+pil
+lxml
+
+ghettoq
+celery

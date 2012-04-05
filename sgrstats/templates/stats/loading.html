@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_stats" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block scripts %}
+	{% assets "js_achievements" %}
+	<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+	{% endassets %}
+{% endblock %}
+{% block title %}Player statistics for player {{ account_id }}{% endblock %}
+
+{% block content_top %}
+	{% include "stats/navigation.html" %}
+	{% include "stats/top_bar.html" %}
+{% endblock %}
+{% block content %}
+{% load tags %}
+<script type="text/javascript">
+$().ready(function()
+{
+	var timeoutCallback = function()
+	{
+		$('div#mid-cont').html('<div id="mid-cont"><div id="contentwrap"><div id="content"><h1>Error</h1> <p>Unable to fetch player stats, please try again later.</p></div></div></div>');
+	}
+
+	var loadTimeout = setTimeout(timeoutCallback, 25100);
+    
+	$.ajax(
+	{
+		url: '{{ url }}',
+		timeout: 25000,
+		success: function(data)
+		{
+			$('div#mid-cont').html(data);
+			clearTimeout(loadTimeout);
+		}
+	});
+});
+</script>
+<div id="loading">
+	<h1>Loading player stats ({{ what }}), please wait a moment...</h1>
+	<img src="{{ MEDIA_URL }}/site_media/images/loading.gif" alt="loading.." />
+</div>
+{% endblock %}

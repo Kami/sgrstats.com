@@ -1,0 +1,52 @@
+#stats th, td
+{
+	padding: -5px 0 -5px 0;
+	margin-bottom: -5px;
+	margin-top: -5px;
+}
+
+#stats tr
+{
+	padding: -5px 0 -5px 0;
+	margin-bottom: -5px;
+	margin-top: -5px;
+}
+
+#stats
+{
+	height: 620px;
+	width: 800px;
+	text-align: center;
+}
+
+.map_stats
+{
+	height: 150px;
+	margin-left: 20px;
+	float: left;
+}
+
+.name
+{
+	margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
+.image
+{
+	margin-bottom: 5px;
+}
+
+.stats p
+{
+	margin-bottom: -5px;
+}
+
+div.row
+{
+	height: 310px;
+	padding-left: 50px;
+	text-align: center;
+	clear: both;
+}

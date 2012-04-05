@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block feed_urls %}<link rel="alternate" type="application/rss+xml" title="Latest news about Stargate Resistance updates and patches" href="{% url updates_feed %}" />{% endblock %}
+{% block title %}{{ update.title }}{% endblock %}
+
+{% block content %}
+{% load comments %}
+
+<h1>{{ update.title }}</h1>
+<p class="article_content">
+	{{ update.body|safe }}
+	
+	<p style="font-weight: bold;">Source: <a href="{{ update.source }}" target="_blank">{{ update.source }}</a></p>
+</p>
+{% endblock %}

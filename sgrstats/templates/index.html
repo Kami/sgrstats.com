@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_index" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block feed_urls %}<link rel="alternate" type="application/rss+xml" title="Latest news RSS feed" href="{% url news_feed %}" />{% endblock %}
+{% block scripts %}
+	{% assets "js_index" %}
+ 	 	<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+	{% endassets %}
+{% endblock %}
+{% block title %}Stargate Resistance statistics, articles, polls and more{% endblock %}
+
+{% block content %}
+<div id="wrapper">
+	<div id="news">
+		<h1>Latest news</h1>
+		{% include "news/news_list.html" %}
+		<p class="older_news">&raquo; <a href="{% url news_index %}">Older news (archive)</a></p>
+	</div>
+
+	<div id="latest_update">
+		<h1>Latest SGR update</h1>
+		<p><a href="{% url update_details title_slug=latest_update.title_slug %}" class="update">{{ latest_update.title }}</a><br />({{ latest_update.date_fetched|date:"d.m.Y" }})</p>
+		<p><a href="{% url updates_index %}">Older updates</a></p>
+	</div>
+	
+	<div class="sidebar" id="poll">
+		<h1>Poll</h1>
+		{% include poll_template %}
+		<p class="older"><a href="{% url polls_index %}">Older polls</a></p>
+	</div>
+	
+	<div class="sidebar" id="latest_articles">
+		<h1>Latest articles</h1>
+		{% include "articles/latest_articles.html" %}
+	</div>
+		
+	<div class="sidebar" id="recently_online">
+		<h1>Recently online</h1>
+		{% include "sidebar/recently_online.html" %}
+	</div>
+	
+	<div class="sidebar" id="deal">
+		{% include "random_deal.html" %}
+	</div>
+	
+	<div class="sidebar" id="partners">
+		<h1>Partners</h1>
+		{% include "partners/random_partners.html" %}
+	</div>
+</div>
+{% endblock %}

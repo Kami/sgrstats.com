@@ -1,0 +1,72 @@
+{% extends "stats/base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_achievements" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+
+{% block content_top %}
+	{% include "stats/navigation.html" %}
+	{% include "stats/top_bar.html" %}
+{% endblock %}
+{% block content %}
+{% load tags %}
+<div id="achievements">
+<script type="text/javascript">
+$(document).ready(function() 
+{ 
+	if (document.location.hash)
+	{
+		var id = document.location.hash.replace('#','');
+	    highlight('tr[id=achievement_' + id + ']');
+	}
+
+	$("#player_achievements").tablesorter({sortList:[[2,1]]});
+});
+</script>
+<table class="tablesorter" id="player_achievements">
+<thead>
+<tr>
+	<th>Title</th>
+	<th>Category</th>
+	<th>Completed on</th>
+</tr>
+</thead>
+<tbody>
+{% for achievement in player_achievements %}
+	<tr id="achievement_{{ achievement.id }}">
+		<td><a href="javascript:void(0);" title="{{ achievement.description }}">{{ achievement.title }}</a></td>
+		<td>{{ achievement.category }}</td>
+		<td>{{ achievement.completed_on|date:"M d, Y h:m A" }}</td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% if percent_completed <= 20 %}
+	{% setvar achievements_tip %}You are still a newbie, keep playing and you will once become a true Jaffa master :-){% endsetvar %}
+{% endif %}
+
+{% if percent_completed > 20 and percent_completed <= 40 %}
+	{% setvar achievements_tip %}You have come pretty far, continue like this and you should become a true Jaffa master in no time!{% endsetvar %}
+{% endif %}
+
+{% if percent_completed > 40 and percent_completed <= 90 %}
+	{% setvar achievements_tip %}Good job soldier!{% endsetvar %}
+{% endif %}
+
+{% if percent_completed > 90 and percent_completed <= 90 %}
+	{% setvar achievements_tip %}You are almost there, good work!{% endsetvar %}
+{% endif %}
+
+{% if percent_completed > 90 %}
+	{% setvar achievements_tip %}Now you are a true Jaffa master, master Bra'tac salutes you!{% endsetvar %}
+{% endif %}
+
+<p>Percent complete: <a href="javascript:void(0);" class="tip" tip="{{ achievements_tip }}">{{ percent_completed|floatformat:"2" }}%</a> ({{ completed_count }} / {{ total_count }})</p>
+</div>
+
+{% include "stats/date_retrieved.html" %}
+{% endblock %}

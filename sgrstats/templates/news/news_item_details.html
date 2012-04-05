@@ -1,0 +1,6 @@
+<h2><a href="{% url news_details title_slug=news.title_slug %}">{{ news.title }}</a></h2>
+<p class="news_content">
+{{ news.excerpt.rendered|safe }}
+{{ news.body.rendered|safe }}
+</p>
+<p class="news_meta">Posted by: <strong>{{ news.author }}</strong> in <strong>{% for category in news.get_categories %} <a href="{% url news_category category_id=category.term_id %}">{{ category.term.term }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</strong> on <strong>{{ news.date_published|date:"DATETIME_FORMAT" }}</strong></p>

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_rankings" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block scripts %}
+	{% assets "js_rankings" %}
+	    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+	{% endassets %}
+{% endblock %}
+{% block title %}Top map{% endblock %}
+
+{% block content_top %}
+	{% include "rankings/navigation.html" %}
+{% endblock %}
+{% block content %}
+{% load lookup_tag %}
+<br /><br />
+<h1>Top map</h1>
+<p>Here you can see which map is the most popular one.</p>
+
+<script type="text/javascript">
+$(document).ready(function() 
+{
+	$("#top_maps")
+	.tablesorter(
+	{
+		widthFixed: true,
+	    headers:
+	    {
+			3:
+	        {
+	    		sorter: 'time_played' 
+	        } 
+	    },
+	    sortList:[[1,1]]
+	});
+
+	$("#top_maps").columnHover({eachCell: true, hoverClass: "betterhover"});
+});
+</script>
+
+<table class="tablesorter" id="top_maps">
+	<thead> 
+	<tr>
+		<th>Map name</th>
+		<th>Wins</th>
+		<th>Losses</th>
+		<th>Time played</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for map in maps %}
+	<tr>
+		<td><a class="tip" tip="<h3>{{ map }}</h3><br /><br /><img src='/site_media/images/stats/maps/{{ map|lower }}_thumb.jpg' />">{{ map }}</a></td>
+		<td>{{ maps|lookup:map|lookup:"Wins" }}</td>
+		<td>{{ maps|lookup:map|lookup:"Losses" }}</td>
+		<td>{{ maps|lookup:map|lookup:"TimePlayedFormatted" }}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+<p>Note: All the values are "totals" - values from all the players summed together.</p>
+{% include "rankings/date_updated.html" %}
+{% endblock %}

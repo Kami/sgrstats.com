@@ -1,0 +1,10 @@
+{% if articles %}
+	{% for article in articles %}
+		<p>
+		<span class="item_title"><a href="{% url article_details title_slug=article.title_slug %}">{{ article.title }}</a></span>
+		<span class="item_meta"><strong>{{ article.date_published|date:"d.m.Y h:i a" }}</strong> by <strong>{{ article.author }}</strong></span>
+		</p>
+	{% endfor %}
+{% else %}
+	<p>None.</p>
+{% endif %}

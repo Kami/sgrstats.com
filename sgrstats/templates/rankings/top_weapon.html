@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_rankings" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block scripts %}
+	{% assets "js_rankings" %}
+	    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+	{% endassets %}
+{% endblock %}
+{% block title %}Top weapon{% endblock %}
+
+{% block content_top %}
+	{% include "rankings/navigation.html" %}
+{% endblock %}
+{% block content %}
+{% load lookup_tag %}
+<br /><br />
+<h1>Top weapon</h1>
+<p>Here you can see which weapon is the best / most popular one.</p>
+
+<script type="text/javascript">
+$(document).ready(function() 
+{
+	$("#top_weapons")
+	.tablesorter(
+	{
+		widthFixed: true,
+	    sortList:[[1,1]]
+	});
+
+	$("#top_weapons").columnHover({eachCell: true, hoverClass: "betterhover"});
+});
+</script>
+
+<table class="tablesorter" id="top_weapons">
+	<thead> 
+	<tr>
+		<th>Weapon name</th>
+		<th>Kills</th>
+		<th>Damage dealt</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for weapon in weapons %}
+	<tr>
+		<td>{{ weapon|format_weapon_name }}</td>
+		<td>{{ weapons|lookup:weapon|lookup:"Kills" }}</td>
+		<td>{{ weapons|lookup:weapon|lookup:"DamageDealt" }}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+<p>Note: All the values are "totals" - values from all the players summed together.</p>
+{% include "rankings/date_updated.html" %}
+{% endblock %}

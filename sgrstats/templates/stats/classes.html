@@ -1,0 +1,118 @@
+{% extends "stats/base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_stats" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+
+{% block content_top %}
+	{% include "stats/navigation.html" %}
+	{% include "stats/top_bar.html" %}
+{% endblock %}
+{% load tags %}
+{% block content %}
+<div id="wrapper">
+
+<div id="sgc">
+<div class="overallstat">
+<div class="left">Experience: <span class="number">{{ player_stats.SGR_SGC_ExperiencePointsEarned }}</span><br />Kills: <span class="number">{{ player_stats.SGR_SGC_KillsTotal }}</span><br />Wins: <span class="number">{{ player_stats.SGR_SGC_WinsTotal }}</span><br />Hits: <span class="number">{{ player_stats.SGR_SGC_ShotsHit }}</span></div>
+<div class="right">Time Played: <span class="number">{{ player_stats.SGR_SGC_TimePlayedTotal }}</span><br /> Deaths: <span class="red">{{ player_stats.SGR_SGC_KilledTotal }}</span><br /> Losses: <span class="red">{{ player_stats.SGR_SGC_LossesTotal }}</span><br />Fired: <span class="red">{{ player_stats.SGR_SGC_ShotsFired }}</span></div>
+</div>
+
+<div class="individualstat">
+<div class="stat"><img src="{{ MEDIA_URL }}/site_media/images/stats/classes/soldier.png"><br />
+<div style="margin-right: 7px;">
+Time played:<br /><span class="number">{{ player_stats.SGR_Soldier_TimePlayedTotal }}</span><br />
+EXP: <span class="number">{{ player_stats.SGR_Soldier_ExperiencePointsEarned }}</span><br />
+Rank: <span class="number tip" tip="{% next_rank 0 player_stats.SGR_Soldier_ExperiencePointsEarned %}">{{ player_stats.SGR_Soldier_Rank }}</span><br />
+Kills: <span class="number">{{ player_stats.SGR_Soldier_KillsTotal }}</span><br />
+Deaths: <span class="red">{{ player_stats.SGR_Soldier_KilledTotal }}</span><br />
+Suicides: <span class="red">{{ player_stats.SGR_Soldier_Suicides }}</span><br />
+K/D ratio: <a class="tip" tip="For all the pedants: <strong>{{ player_stats.SGR_Soldier_KillDeathRatio }}</strong> (more or less)"><span class="number">{{ player_stats.SGR_Soldier_KillDeathRatio|floatformat:3 }}</span></a><br />
+Shots (fired): <span class="red">{{ player_stats.SGR_Soldier_ShotsFired }}</span><br />
+Shots (hits): <span class="number">{{ player_stats.SGR_Soldier_ShotsHit }}</span><br />
+Hits %: <span class="number">{{ player_stats.SGR_Soldier_HitRatio|floatformat:2 }}</span></div></div>
+
+<div class="stat"><img src="{{ MEDIA_URL }}/site_media/images/stats/classes/commando.png"><br />
+<div style="margin-right: 7px;">
+Time played:<br /><span class="number">{{ player_stats.SGR_Commando_TimePlayedTotal }}</span><br />
+EXP: <span class="number">{{ player_stats.SGR_Commando_ExperiencePointsEarned }}</span><br />
+Rank: <span class="number tip" tip="{% next_rank 0 player_stats.SGR_Commando_ExperiencePointsEarned %}">{{ player_stats.SGR_Commando_Rank }}</span><br />
+Kills: <span class="number">{{ player_stats.SGR_Commando_KillsTotal }}</span><br />
+Deaths: <span class="red">{{ player_stats.SGR_Commando_KilledTotal }}</span><br />
+Suicides: <span class="red">{{ player_stats.SGR_Commando_Suicides }}</span><br />
+K/D ratio: <a class="tip" tip="For all the pedants: <strong>{{ player_stats.SGR_Commando_KillDeathRatio }}</strong> (more or less)"><span class="number">{{ player_stats.SGR_Commando_KillDeathRatio|floatformat:3 }}</span></a><br />
+Shots (fired): <span class="red">{{ player_stats.SGR_Commando_ShotsFired }}</span><br />
+Shots (hits): <span class="number">{{ player_stats.SGR_Commando_ShotsHit }}</span><br />
+Hits %: <span class="number">{{ player_stats.SGR_Commando_HitRatio|floatformat:2 }}</span></div></div>
+
+<div class="stat"><img src="{{ MEDIA_URL }}/site_media/images/stats/classes/scientist.png"><br />
+<div style="margin-right: 7px;">
+Time played:<br /><span class="number">{{ player_stats.SGR_Scientist_TimePlayedTotal }}</span><br />
+EXP: <span class="number">{{ player_stats.SGR_Scientist_ExperiencePointsEarned }}</span><br />
+Rank: <span class="number tip" tip="{% next_rank 0 player_stats.SGR_Scientist_ExperiencePointsEarned %}">{{ player_stats.SGR_Scientist_Rank }}</span><br />
+Kills: <span class="number">{{ player_stats.SGR_Scientist_KillsTotal }}</span><br />
+Deaths: <span class="red">{{ player_stats.SGR_Scientist_KilledTotal }}</span><br />
+Suicides: <span class="red">{{ player_stats.SGR_Scientist_Suicides }}</span><br />
+K/D ratio: <a class="tip" tip="For all the pedants: <strong>{{ player_stats.SGR_Scientist_KillDeathRatio }}</strong> (more or less)"><span class="number">{{ player_stats.SGR_Scientist_KillDeathRatio|floatformat:3 }}</span></a><br />
+Shots (fired): <span class="red">{{ player_stats.SGR_Scientist_ShotsFired }}</span><br />
+Shots (hits): <span class="number">{{ player_stats.SGR_Scientist_ShotsHit }}</span><br />
+Hits %: <span class="number">{{ player_stats.SGR_Scientist_HitRatio|floatformat:2 }}</span></div></div>
+</div>
+</div>
+
+<div id="syslords">
+<div class="overallstat">
+<div class="left">Experience: <span class="number">{{ player_stats.SGR_SystemLords_ExperiencePointsEarned }}</span><br />Kills: <span class="number">{{ player_stats.SGR_SystemLords_KillsTotal }}</span><br />Wins: <span class="number">{{ player_stats.SGR_SystemLords_WinsTotal }}</span><br />Hits: <span class="number">{{ player_stats.SGR_SystemLords_ShotsHit }}</span></div>
+<div class="right">Time Played: <span class="number">{{ player_stats.SGR_SystemLords_TimePlayedTotal }}</span><br /> Deaths: <span class="red">{{ player_stats.SGR_SystemLords_KilledTotal }}</span><br /> Losses: <span class="red">{{ player_stats.SGR_SystemLords_LossesTotal }}</span><br />Fired: <span class="red">{{ player_stats.SGR_SystemLords_ShotsFired }}</span></div>
+</div>
+<div class="individualstat">
+<div class="stat"><img src="{{ MEDIA_URL }}/site_media/images/stats/classes/goauld.png"><br /><div style="margin-left: 7px;">
+Time played:<br /><span class="number">{{ player_stats.SGR_Goauld_TimePlayedTotal }}</span><br />
+EXP: <span class="number">{{ player_stats.SGR_Goauld_ExperiencePointsEarned }}</span><br />
+Rank: <span class="number tip" tip="{% next_rank 1 player_stats.SGR_Goauld_ExperiencePointsEarned %}">{{ player_stats.SGR_Goauld_Rank }}</span><br />
+Kills: <span class="number">{{ player_stats.SGR_Goauld_KillsTotal }}</span><br />
+Deaths: <span class="red">{{ player_stats.SGR_Goauld_KilledTotal }}</span><br />
+Suicides: <span class="red">{{ player_stats.SGR_Goauld_Suicides }}</span><br />
+K/D ratio: <a class="tip" tip="For all the pedants: <strong>{{ player_stats.SGR_Goauld_KillDeathRatio }}</strong> (more or less)"><span class="number">{{ player_stats.SGR_Goauld_KillDeathRatio|floatformat:3 }}</span></a><br />
+Shots (fired): <span class="red">{{ player_stats.SGR_Goauld_ShotsFired }}</span><br />
+Shots (hits): <span class="number">{{ player_stats.SGR_Goauld_ShotsHit }}</span><br />
+Hits %: <span class="number">{{ player_stats.SGR_Goauld_HitRatio|floatformat:2 }}</span></div></div>
+
+<div class="stat"><img src="{{ MEDIA_URL }}/site_media/images/stats/classes/jaffa.png"><br />
+<div style="margin-left: 7px;">
+Time played:<br /><span class="number">{{ player_stats.SGR_Jaffa_TimePlayedTotal }}</span><br />
+EXP: <span class="number">{{ player_stats.SGR_Jaffa_ExperiencePointsEarned }}</span><br />
+Rank: <span class="number tip" tip="{% next_rank 1 player_stats.SGR_Jaffa_ExperiencePointsEarned %}">{{ player_stats.SGR_Jaffa_Rank }}</span><br />
+Kills: <span class="number">{{ player_stats.SGR_Jaffa_KillsTotal }}</span><br />
+Deaths: <span class="red">{{ player_stats.SGR_Jaffa_KilledTotal }}</span><br />
+Suicides: <span class="red">{{ player_stats.SGR_Jaffa_Suicides }}</span><br />
+K/D ratio: <a class="tip" tip="For all the pedants: <strong>{{ player_stats.SGR_Jaffa_KillDeathRatio }}</strong> (more or less)"><span class="number">{{ player_stats.SGR_Jaffa_KillDeathRatio|floatformat:3 }}</span></a><br />
+Shots (fired): <span class="red">{{ player_stats.SGR_Jaffa_ShotsFired }}</span><br />
+Shots (hits): <span class="number">{{ player_stats.SGR_Jaffa_ShotsHit }}</span><br />
+Hits %: <span class="number">{{ player_stats.SGR_Jaffa_HitRatio|floatformat:2 }}</span></div></div>
+
+<div class="stat"><img src="{{ MEDIA_URL }}/site_media/images/stats/classes/ashrak.png"><br />
+<div style="margin-left: 7px;">
+Time played:<br /><span class="number">{{ player_stats.SGR_Ashrak_TimePlayedTotal }}</span><br />
+EXP: <span class="number">{{ player_stats.SGR_Ashrak_ExperiencePointsEarned }}</span><br />
+Rank: <span class="number tip" tip="{% next_rank 1 player_stats.SGR_Ashrak_ExperiencePointsEarned %}">{{ player_stats.SGR_Ashrak_Rank }}</span><br />
+Kills: <span class="number">{{ player_stats.SGR_Ashrak_KillsTotal }}</span><br />
+Deaths: <span class="red">{{ player_stats.SGR_Ashrak_KilledTotal }}</span><br />
+Suicides: <span class="red">{{ player_stats.SGR_Ashrak_Suicides }}</span><br />
+K/D ratio: <a class="tip" tip="For all the pedants: <strong>{{ player_stats.SGR_Ashrak_KillDeathRatio }}</strong> (more or less)"><span class="number">{{ player_stats.SGR_Ashrak_KillDeathRatio|floatformat:3 }}</span></a><br />
+Shots (fired): <span class="red">{{ player_stats.SGR_Ashrak_ShotsFired }}</span><br />
+Shots (hits): <span class="number">{{ player_stats.SGR_Ashrak_ShotsHit }}</span><br />
+Hits %: <span class="number">{{ player_stats.SGR_Ashrak_HitRatio|floatformat:2 }}</span></div></div>
+</div>
+</div>
+
+<div id="logo"><img src="{{ MEDIA_URL }}/site_media/images/stats/classes/center.png"></div>
+</div>
+
+<div style="text-align: center;">Want to know how far from the next rank you are? Position the mouse over the class current rank!</div>
+
+{% include "stats/date_retrieved.html" %}
+{% endblock %}

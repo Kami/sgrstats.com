@@ -1,0 +1,5 @@
+{% load comments %}
+<div id="news_item">
+<h2 class="news_title"><a href="{% url update_details title_slug=update.title_slug %}">{{ update.title }}</a></h2>
+<p class="news_content"> {{ update.body|safe }}</p>
+</div>

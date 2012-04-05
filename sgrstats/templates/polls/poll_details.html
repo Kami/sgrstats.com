@@ -1,0 +1,12 @@
+<div id="question">
+	<a href="{% url poll_details poll_id=poll.id %}">{{ poll.question }}</a>
+</div>
+
+<form action="{% url poll_vote poll_id=poll.id %}" method="post">
+{% csrf_token %}
+{% for choice in poll.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice }}</label><br />
+{% endfor %}
+<p><input type="submit" value="Vote" /></p>
+</form>

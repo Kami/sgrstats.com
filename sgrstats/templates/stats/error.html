@@ -1,0 +1,33 @@
+{% extends "stats/base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_stats" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+
+{% block content_top %}
+	{% include "stats/navigation.html" %}
+	{% include "stats/top_bar.html" %}
+{% endblock %}
+{% block content %}
+{% load tags %}
+{% if error_type == 1 %}
+	{% setvar error_title %}Inexistent player{% endsetvar %}
+	{% setvar error_message %}Member with this account ID does not exist{% endsetvar %}
+{% endif %}
+
+{% if error_type == 2 %}
+	{% setvar error_title %}FireSky servers are unavailable{% endsetvar %}
+	{% setvar error_message %}FireSky servers are currently offline or unavailable, please try again later.{% endsetvar %}
+{% endif %}
+
+{% if error_type == 3 %}
+	{% setvar error_title %}Achievements{% endsetvar %}
+	{% setvar error_message %}Member with this account ID does not exist or does not have any completed achievements.{% endsetvar %}
+{% endif %}
+
+<h1>{{ error_title }}</h1>
+<p>{{ error_message }}</p>
+{% endblock %}

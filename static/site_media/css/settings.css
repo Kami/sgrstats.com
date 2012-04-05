@@ -1,0 +1,35 @@
+table#settings th
+{
+	width: 165px;
+}
+
+div#status
+{
+	color: #FF0000;
+}
+
+div#link_form
+{
+	width: 250px;
+	padding: 8px;
+	color: #c9c9c9;
+	font: 11.5px/1.3 Arial;
+	background: #1A1A1A;
+}
+
+div#link_form label
+{
+	margin-right: 5px;
+	font-weight: bold;
+}
+
+div#link_form input[type=text]
+{
+	width: 80px;
+}
+
+p.notes
+{
+	fint-size: 0.9em;
+	font-style: italic;
+}

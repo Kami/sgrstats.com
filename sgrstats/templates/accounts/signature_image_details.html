@@ -1,0 +1,25 @@
+<link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}/site_media/css/signature_images.css" />
+<!--[if lt IE 7]>
+	<link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}/site_media/css/ie_fixes.css" />
+<![endif]-->
+
+<table id="sig_image">
+	<tr>
+		<th class="head" colspan="2">Template {{ template }}</th>
+	</tr>
+	<tr>
+		<th class="preview" colspan="2"><a href="{{ images_url }}/{{ signature_path }}" target="_blank"><img src="{{ images_url }}/{{ signature_path }}" /></a></th>
+	</tr>
+	<tr>
+		<th>Link:</th>
+		<td><a href="{{ images_url }}/{{ signature_path }}" target="_blank">{{ images_url }}/{{ signature_path }}</a></td>
+	</tr>
+	<tr>
+		<th>BB Code:</th>
+		<td class="code_box"><input type="text" class="code" value='[url=http://www.sgrstats.com{% url stats_summary account_id=user.get_profile.account_id %}][img]{{ images_url }}/{{ signature_path }}[/img][/url]' /></td>
+	</tr>
+	<tr>
+		<th>HTML Code</th>
+		<td class="code_box" ><input type="text" class="code" value='<a href="http://www.sgrstats.com{% url stats_summary account_id=user.get_profile.account_id %}"><img src="{{ images_url }}/{{ signature_path }}" alt="View my Stargate Resistance statistics on SGRStats.com!" /></a>' /></td>
+	</tr>
+</table>

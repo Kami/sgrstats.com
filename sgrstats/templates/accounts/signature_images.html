@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_accounts_signatures" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block scripts %}
+	{% assets "js_accounts" %}
+ 	 	<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+	{% endassets %}
+{% endblock %}
+{% block title %}Signature images{% endblock %}
+
+{% block content %}
+<h1>Signature images</h1>
+<p>Here you can find a list of your dynamic signature images and their corresponding HTML and BB codes (click on the image to view the full version of the signature and the corresponding HTML and BB codes).</p>
+
+<script type="text/javascript">
+$(document).ready(function() 
+{ 
+	$('a.template_details').click(function()
+	{
+		/*var template_name = $(this).attr('title').split(' ')[0];*/
+		var template_name = $(this).attr('name');
+		var url = '{% url account_signature_images %}' + template_name + '/';
+
+		boxyDialog = new Boxy.load(url,
+		{
+			title: 'Template details (' + template_name + ')',
+			draggable: true,
+			modal: false,
+			cache: true
+		});
+	});
+});
+</script>
+{% if available_templates %}
+	{% if available_signatures %}
+		<table id="sig_images">
+		{% for signature in available_signatures %}
+			{% if forloop.counter0 == 0 %}<tr>{% endif %}
+			{% if forloop.counter0|divisibleby:"5" %}</tr><tr>{% endif %}
+			<td>
+				<p class="head" colspan="2"><a href="javascript:void(0);" class="template_details1" name="{{ signature.0 }}" title="{{ signature.0 }} signature template">Template {{ signature.0 }}</a></p>
+				<div class="preview"><a href="javascript:void(0);" class="template_details" name="{{ signature.0 }}" title="{{ signature.0 }} signature template"><img src="{{ MEDIA_URL }}/site_media/images/sigs/{{ signature.0 }}{{ signature.2 }}" class="thumb" /></a></div>
+			</td>
+		{% endfor %}
+		</table>
+		{% if user.get_profile.date_signature_generated %}
+			<p class="date">Last signature image was generated on on <strong>{{ user.get_profile.date_signature_generated|date:"Y.m.d H:i:s" }}</strong>.</p>
+		{% endif %}
+	{% else %}
+		<p>No signature images are currently available (if you have just enabled signature generation, please wait 5 - 15 minutes for the first image to be generated).</p>
+	{% endif %}
+{% else %}
+	<p>No signature images are currently available (if you have just enabled signature generation, please wait 5 - 15 minutes for the first image to be generated).</p>
+{% endif %}
+{% endblock %}

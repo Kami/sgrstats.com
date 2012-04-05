@@ -1,0 +1,18 @@
+<div id="statsnav">
+	<div id="statsnav_head"><img src="{{ MEDIA_URL }}/site_media/images/stats/navigation/statsnav_head.jpg" alt="Statistics Summary" />
+	</div>
+	<div id="statsnav_spacer">
+	<form action="{% url stats_index %}" method="POST">{% csrf_token %}
+	<div id="nav_form">Member ID: <input type="text" name="member_id" id="member_id" value="{% if account_id %}{{ account_id }}{% endif %}" /> <input type="submit" name="submit" id="member_id_submit" value="GO" /></div>
+	</form>
+	</div>
+	<div id="statsnav_nav">
+		<a id="statshover" href="{% if account_id %}{% url stats_summary account_id=account_id %}{% endif %}">Summary</a>
+		<a id="statshover" href="{% if account_id %}{% url stats_kills account_id=account_id %}{% endif %}">Kills/Deaths</a>
+		<a id="statshover" href="{% if account_id %}{% url stats_classes account_id=account_id %}{% endif %}">Classes</a>
+		<a id="statshover" href="{% if account_id %}{% url stats_maps account_id=account_id %}{% endif %}">Maps</a>
+		<a id="statshover" href="{% if account_id %}{% url stats_achievements account_id=account_id %}{% endif %}">Achievements</a>
+	</div>
+	<div id="statsnav_rights">
+	</div>
+</div>

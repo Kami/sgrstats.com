@@ -1,0 +1,5 @@
+.settings
+.project
+.pydevproject
+uploads
+*test.py*

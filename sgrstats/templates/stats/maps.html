@@ -1,0 +1,90 @@
+{% extends "stats/base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_stats" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+
+{% block content_top %}
+	{% include "stats/navigation.html" %}
+	{% include "stats/top_bar.html" %}
+{% endblock %}
+{% block content %}
+<br /><br /><br /><br />
+<h1>Map statistics</h1>
+
+<div id="stats">
+
+<div class="row">
+	<div class="map_stats">
+	<div class="name">Stargate Command</div>
+	<div class="image"><img src="{{ MEDIA_URL }}/site_media/images/stats/maps/sgc_thumb.jpg" alt="SGC" /></div>
+	<div class="stats">
+		<p><strong>Time played:</strong> {{ player_stats.SGR_Account_TimePlayedOnSGC }}</p>
+		<p><strong>Wins:</strong> <span style="color: green">{{ player_stats.SGR_Account_WinsOnSGC }}</span></p>
+		<p><strong>Losses:</strong> <span style="color: red">{{ player_stats.SGR_Account_LossesOnSGC }}</span></p>
+		<p><strong>Best team score:</strong> <span style="color: #77AEEF"> {{ player_stats.SGR_Account_HadBestTeamScoreSGC }} times</span></p>
+		<p><strong>Top class:</strong> {{ top_class.SGC.0 }} ({{ top_class.SGC.1 }} wins)</p>
+		<p><strong>Worst class:</strong> {{ worst_class.SGC.0 }} ({{ worst_class.SGC.1 }} losses)</p>
+	</div>
+	</div>
+	
+	<div class="map_stats">
+	<div class="name">Whiteout</div>
+	<div class="image"><img src="{{ MEDIA_URL }}/site_media/images/stats/maps/whiteout_thumb.jpg" alt="Whiteout" /></div>
+	<div class="stats">
+		<p><strong>Time played:</strong> {{ player_stats.SGR_Account_TimePlayedOnWhiteout }}</p>
+		<p><strong>Wins:</strong> <span style="color: green">{{ player_stats.SGR_Account_WinsOnWhiteout }}</span></p>
+		<p><strong>Losses:</strong> <span style="color: red">{{ player_stats.SGR_Account_LossesOnWhiteout }}</span></p>
+		<p><strong>Best team score:</strong> <span style="color: #77AEEF"> {{ player_stats.SGR_Account_HadBestTeamScoreWhiteout }} times</span></p>
+		<p><strong>Top class:</strong> {{ top_class.Whiteout.0 }} ({{ top_class.Whiteout.1 }} wins)</p>
+		<p><strong>Worst class:</strong> {{ worst_class.Whiteout.0 }} ({{ worst_class.Whiteout.1 }} losses)</p>
+	</div>
+	</div>
+	
+	<div class="map_stats">
+	<div class="name">Temple</div>
+	<div class="image"><img src="{{ MEDIA_URL }}/site_media/images/stats/maps/temple_thumb.jpg" alt="Temple" /></div>
+	<div class="stats">
+		<p><strong>Time played:</strong> {{ player_stats.SGR_Account_TimePlayedOnAmarna }}</p>
+		<p><strong>Wins:</strong> <span style="color: green">{{ player_stats.SGR_Account_WinsOnAmarna }}</span></p>
+		<p><strong>Losses:</strong> <span style="color: red">{{ player_stats.SGR_Account_LossesOnAmarna }}</span></p>
+		<p><strong>Best team score:</strong> <span style="color: #77AEEF"> {{ player_stats.SGR_Account_HadBestTeamScoreAmarna }} times</span></p>
+		<p><strong>Top class:</strong> {{ top_class.Amarna.0 }} ({{ top_class.Amarna.1 }} wins)</p>
+		<p><strong>Worst class:</strong> {{ worst_class.Amarna.0 }} ({{ worst_class.Amarna.1 }} losses)</p>
+	</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="map_stats">
+	<div class="name">Leonops (Arena)</div>
+	<div class="image"><img src="{{ MEDIA_URL }}/site_media/images/stats/maps/leonops_thumb.jpg" alt="Leonops" /></div>
+	<div class="stats">
+		<p><strong>Time played:</strong> {{ player_stats.SGR_Account_TimePlayedOnArena }}</p>
+		<p><strong>Wins:</strong> <span style="color: green">{{ player_stats.SGR_Account_WinsOnArena }}</span> (all classes)</p>
+		<p><strong>Highest match score:</strong> <span style="color: #77AEEF">{{ player_stats.SGR_Account_HighestMatchScoreArena}} times</span></p>
+		<p><strong>Last one standing:</strong> <span style="color: #77AEEF">{{ player_stats.SGR_Account_LastOneStandingOnArena }} times</span></p>
+		<p><strong>Top class:</strong> {{ top_class.Arena.0 }} ({{ top_class.Arena.1 }} wins)</p>
+		<p><strong>Worst class:</strong> {{ worst_class.Arena.0 }} ({{ worst_class.Arena.1 }} losses)</p>
+	</div>
+	</div>
+	
+	<div class="map_stats">
+	<div class="name">Leonops (TDM)</div>
+	<div class="image"><img src="{{ MEDIA_URL }}/site_media/images/stats/maps/leonops_thumb.jpg" alt="Leonops" /></div>
+	<div class="stats">
+		<p><strong>Time played:</strong> {{ player_stats.SGR_Account_TimePlayedOnCourt }}</p>
+		<p><strong>Wins:</strong> <span style="color: green">{{ player_stats.SGR_Account_WinsOnCourt }}</span></p>
+		<p><strong>Losses:</strong> <span style="color: red">{{ player_stats.SGR_Account_LossesOnCourt }}</span></p>
+		<p><strong>Best team score:</strong> <span style="color: #77AEEF"> {{ player_stats.SGR_Account_HadBestTeamScoreCourt }} times</span></p>
+		<p><strong>Top class:</strong> {{ top_class.Court.0 }} ({{ top_class.Court.1 }} wins)</p>
+		<p><strong>Worst class:</strong> {{ worst_class.Court.0 }} ({{ worst_class.Court.1 }} losses)</p>
+	</div>
+	</div>
+</div>
+</div>
+
+{% endblock %}

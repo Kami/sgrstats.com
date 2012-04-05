@@ -1,0 +1,8 @@
+{% if news %}
+	{% for news in news %}
+		{% include "news/news_item.html" %}
+	{% endfor %}
+{% else %}
+	<p>There are no news for this time period.<br /><br />
+	Please come back again later or help using make our site better by <a href="/about/">joining our team</a>.</p>
+{% endif %}

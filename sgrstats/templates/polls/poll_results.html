@@ -1,0 +1,13 @@
+<div id="question">
+	<a href="{% url poll_details poll_id=poll.id %}">{{ poll.question }}</a>
+</div>
+
+{% for choice in poll.choice_set.all %}
+	<div class="option">
+		<div class="choice_title">{{ choice.choice }}</div>
+		<div class="choice_option"><div class="bar_container"><div id="bar{{ choice.id }}" class="bar_choice" style="width: {% if choice.get_vote_percentage == 0 %}1{% else %}{{ choice.get_vote_percentage }}{% endif %}%">&nbsp;</div></div><div class="percentage_text">{{ choice.get_vote_percentage }}%</div></div>
+	</div>
+	<br style="clear: both;" />
+{% endfor %}
+
+<p style="display: block;">Number votes: <strong>{{ vote_count }}</strong></p>

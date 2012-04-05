@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_partners" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block title %}Partners{% endblock %}
+
+{% block content %}
+<h1>Partners</h1>
+<p>Here you can find a list of all our partners.<br />
+You can find instructions on how to link to our website on <a href="/link-to-us/">Link to use</a> page.</p>
+
+{% if partners %}
+	<div id="partners">
+	{% for partner in partners %}
+		<p class="partner"><a href="{% url partners_visit partner_id=partner.id %}" title="{{ partner.description }}" target="_blank"><img src="{{ MEDIA_URL }}/site_media/images/uploads/partners/{{ partner.banner_image }}" /> {{ partner.name }}</a></p>
+	{% endfor %}
+	</div>
+{% else %}
+	<p>no partners available</p>
+{% endif %}
+
+<p>If you own or run a Stargate related website and would like to be our partner, <a href="/about/">contact us</a> and we will send you a link to our banner and details how to link to our website (don't forget to attach your banner, image size should be <strong>88x31px</strong> or <strong>102x32px</strong>).</p>
+{% endblock %}

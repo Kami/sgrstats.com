@@ -1,0 +1,65 @@
+#wrapper {
+	margin: 55px 55px 0 0;
+	width: 750px;
+	height: 340px;
+	font-size: 11px;
+}
+#sgc, #syslords, #logo {float: left;}
+#sgc .overallstat {
+	width: 338px;
+	height:103px;
+	background: url('/site_media/images/stats/classes/sgc.jpg') no-repeat;
+	padding: 25px 0px 0px 10px;
+}
+#sgc .stat {text-align: right;}
+#syslords .overallstat {
+	width: 318px;
+	height: 103px;
+	background: url('/site_media/images/stats/classes/syslords.jpg') no-repeat;
+	padding: 25px 10px 0px 65px;
+}
+#syslords .stat {text-align: left;}
+#logo {
+	position: absolute;
+	width: 146px;
+	height: 101px;
+	top: 100px;
+	right: 430px;
+	z-index: 2;
+}
+.stat {
+	float: left;
+	width: 114px;
+	height: 290px;
+	background: url('/site_media/images/stats/classes/stat.jpg') no-repeat;
+	margin: 0px 1px 10px 1px;
+}
+.stat img {
+	margin-bottom: 20px;
+}
+#sgc .individualstat .stat .number,
+#sgc .overallstat .number {color: #618bc3;}
+#syslords .individualstat .stat .number,
+#syslords .overallstat .number {color: #dac28a;}
+.red {color: #b63434;}
+.left {
+	float: left;
+	text-align: right;
+	margin: 0px 5px;
+	font: 14px Arial;
+}
+.right {
+	float: left;
+	text-align: left;
+	margin: 0px 5px;
+	font: 14px Arial;
+}
+span.tip {
+text-decoration: underline;
+cursor: pointer;
+}
+
+span.tip:hover
+{
+	text-decoration: none;
+}

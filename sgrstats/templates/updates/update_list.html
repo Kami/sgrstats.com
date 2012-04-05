@@ -1,0 +1,7 @@
+{% if updates %}
+	{% for update in updates %}
+		{% include "updates/update_item.html" %}
+	{% endfor %}
+{% else %}
+	<p>Currently, there are no updates.</p>
+{% endif %}

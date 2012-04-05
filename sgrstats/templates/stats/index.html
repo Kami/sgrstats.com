@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_stats_index" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block title %}Player statistics{% endblock %}
+
+{% block content_top %}
+	{% include "stats/navigation.html" %}
+{% endblock %}
+{% block content %}
+<div id="stats">
+<h1>Player statistics</h1>
+<p>To view your stats please login or enter your member id. For help aquring your member id, please see the <a href="/help/">Help</a> section.</p>
+</div>
+{% endblock %}

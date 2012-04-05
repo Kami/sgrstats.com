@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block feed_urls %}<link rel="alternate" type="application/rss+xml" title="Latest polls" href="{% url polls_feed %}" />{% endblock %}
+{% block title %}{{ poll.question }}{% endblock %}
+
+{% block content %}
+{% load markup %}
+<h1>{{ poll.question }}</h1>
+<p>{{ poll.description|markdown }}</p>
+
+{% if messages %}
+	{% for message in messages %}
+		<div id="{{ message.tags }}">{{ message|safe }}</div>
+	{% endfor %}
+{% endif %}
+
+<form action="{% url poll_vote poll_id=poll.id %}" method="post">
+{% csrf_token %}
+{% for choice in poll.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice }}</label><br />
+{% endfor %}
+<p><input type="submit" value="Vote" /></p>
+</form>
+{% endblock %}

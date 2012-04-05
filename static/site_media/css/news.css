@@ -1,0 +1,29 @@
+#wrapper
+{
+	width: 100%;
+	overflow: hidden;
+}
+
+#news
+{
+	width: 510px;
+	float: left;
+}
+
+.sidebar h1
+{
+	text-align: center;
+}
+
+#months
+{
+	width: 160px;
+	float: right;
+	text-align: center;
+}
+
+#months p
+{
+	font-size: 1.2em;
+	font-weight: bold;
+}

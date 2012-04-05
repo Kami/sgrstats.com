@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_servers" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block scripts %}
+	{% assets "js_servers" %}
+	    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+	{% endassets %}
+{% endblock %}
+{% block title %}Servers{% endblock %}
+
+{% block content %}
+<div id="server_list">
+<h1>Servers</h1>
+<p>Here you can see a list of Stargate Resistance servers which are not full.</p>
+
+<script type="text/javascript">
+$(document).ready(function() 
+{ 
+    $('td.map').live('mouseover', function()
+ 	{
+     	var game_type = $(this).next().html();
+     	$(this).qtip(
+        {
+            content: '<img src="{{ MEDIA_URL }}/site_media/images/maps/' + $(this).text().toLowerCase() + '.jpg" style="margin-bottom: 5px;"" /><br /><span class="map_name">' + $(this).text() + ' (' + game_type + ')</span>',  
+            position: { target: 'mouse' },
+            style:
+            {
+            	name: 'dark',
+        		textAlign: 'center',
+            	padding: 5,
+            	width: 420,
+            	height: 320,
+            	classes:
+                {
+            		content: 'tooltip_content'
+                }
+            }   
+ 	   });
+ 	});
+
+    $.tablesorter.addParser(
+    { 
+        id: 'players', 
+        is: function(s)
+        { 
+            return false; 
+        }, 
+        format: function(s)
+        { 
+            players_online = s.substring(0, s.indexOf('/'));
+            return players_online;
+        }, 
+        type: 'numeric' 
+    });
+    
+    $("#server_list_table").tablesorter(
+    {
+        headers:
+        {
+        	4:
+            {
+        		sorter: 'players' 
+            } 
+        },
+        sortList:[[4,1]]
+    });
+});
+</script>
+<table id="server_list_table" class="tablesorter">
+<thead>
+<tr>
+	<th>Server name</th>
+	<th>Map name</th>
+	<th>Game type</th>
+	<th>Players (SGC)</th>
+	<th>Players (syslord)</th>
+	<th>Players (current / max)</th>
+</tr>
+</thead>
+<tbody>
+{% for server in servers %}
+	<tr>
+		<td>{{ server.name }} {% if server.location %} <img src ="http://ip2.cc/flags/{{ server.location.1 }}.gif" title="{{ server.location.0 }} - {{ server.location.2 }}" />{% else %}<img src ="http://ip2.cc/flags/eu.gif" title="Unknown" />{% endif %}</td>
+		<td class="map"><a href="javascript:void(0);">{{ server.map }}</a></td>
+		<td>{{ server.game_type }}</td>
+		<td>{{ server.sgc_player_count }}</td>
+		<td>{{ server.sl_player_count }}</td>
+		<td>{{ server.total_player_count }} / 16</td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<p>Total players: {{ player_count }} / {{ player_count_max }}</p>
+<p>Server list retrieved on <strong>{{ date_retrieved|date:"d.m.Y H:i:s" }}</strong></p>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<div id="statsfor">
+	<div id="statsfor_user">Statistics for:<br />
+	<span id="memidbig">{% if username %}{{ username }}{% else %}{{ account_id }}{% endif %}</span><br />
+	{% if user.is_authenticated %}
+		<span id="link_account">
+		{% if not user.get_profile.account_id and player_stats %}
+			(<a href="{% url account_link_account account_id=account_id %}?next={{ request.path }}">this is me</a>)
+		{% else %}
+			{% ifequal user.get_profile.account_id account_id %}
+				(<a href="{% url account_unlink_account %}?next={{ request.path }}">unlink my account</a>)
+			{% endifequal %}
+		{% endif %}
+		</span>
+	{% endif %}
+	</div>
+	<div id="statsforleft"></div>
+	<div id="statsforcontent">
+		<div id="statsforbox">Experience:<br />{% if not player_stats %}?{% else %}<span class="sgreen">{{ player_stats.SGR_Account_ExperiencePointsEarned }}</span>{% endif %}</div>
+		<div id="statsforbox">Kills/Deaths:<br />{% if not player_stats %}?{% else %}<span class="sgreen">{{ player_stats.SGR_Account_KillsTotal }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledTotal }}</span>{% endif %}</div>
+		<div id="statsforbox">Shots Hit/Fired:<br />{% if not player_stats %}?{% else %}<span class="sgreen">{{ player_stats.SGR_Account_ShotsHit }}</span>/<span class="sred">{{ player_stats.SGR_Account_ShotsFired }}</span>{% endif %}</div>
+		<div id="statsforbox">Wins/Losses:<br />{% if not player_stats %}?{% else %}<span class="sgreen">{{ player_stats.SGR_Account_WinsTotal }}</span>/<span class="sred">{{ player_stats.SGR_Account_LossesTotal }}</span>{% endif %}</div>
+		<div id="statsforbox">Time Played:<br />{% if not player_stats %}?{% else %}<span class="sgreen">{{ player_stats.SGR_Account_TimePlayedTotal }}</span>{% endif %}</div>
+	</div>
+	<div id="statsforright"></div>
+</div>

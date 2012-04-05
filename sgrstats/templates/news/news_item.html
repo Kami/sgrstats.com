@@ -1,0 +1,8 @@
+{% load comments %}
+{% get_comment_count for news as comment_count %}
+<div id="news_item">
+<h2 class="news_title"><a href="{% url news_details title_slug=news.title_slug %}">{{ news.title }}</a></h2>
+<p class="news_content"> {{ news.excerpt.rendered|safe }}</p>
+{% if news.body.raw %}<p class="read_more">&raquo; <a href="{% url news_details title_slug=news.title_slug %}">Read more</a></p>{% endif %}
+<p class="news_meta">Posted by: <strong>{{ news.author }}</strong> in <strong>{% for category in news.get_categories %} <a href="{% url news_category category_id=category.term_id %}">{{ category.term.term }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</strong> on <strong>{{ news.date_published|date:"DATETIME_FORMAT" }}</strong> | <a href="{% url news_details title_slug=news.title_slug %}#comments">Comments: ({{ comment_count }})</a></p>
+</div>

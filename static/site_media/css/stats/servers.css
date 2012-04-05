@@ -1,0 +1,23 @@
+table
+{
+	width: 650px;
+}
+
+table th
+{
+	color: #bcb6a3;
+	font-weight: bold;
+	font-size: 1.2em;
+	text-align: center;
+}
+
+table td
+{
+	text-align: center;
+}
+
+span.map_name
+{
+	color: #FFFFFF;
+	font-weight: bold;
+}

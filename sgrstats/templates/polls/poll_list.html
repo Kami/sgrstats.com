@@ -1,0 +1,8 @@
+{% load markup %}
+{% if polls %}
+	{% for poll in polls %}
+		<p><a href="{% url poll_details poll_id=poll.id %}">{{ poll.question }}</a> (<a href="{% url poll_results poll_id=poll.id %}">results</a>) - by {{ poll.author }} on {{ poll.date_published|date:"DATETIME_FORMAT" }} ({{ poll.get_total_vote_count }} votes)</p>
+	{% endfor %}
+{% else %}
+	<p>Currently, there are no polls :-(<br /><br />Please come back again later or help using make our site better by <a href="/about/">joining our team</a>.</p>
+{% endif %}

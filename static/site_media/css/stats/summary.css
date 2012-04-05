@@ -1,0 +1,189 @@
+span.sgreen{
+	color: #56eb3e;
+}
+span.sred{
+	color: #a83131;
+}
+
+#statssummery{
+	width: 700px;
+	text-align: left; 
+	margin: 0 0 0 28px;
+	padding-top: 50px;
+}
+
+
+
+
+
+
+#Sum_left{
+	background: url('/site_media/images/stats/summary/sum_left.png') no-repeat 0 0;
+	width: 159px;
+	height: 312px;
+	float: left;
+	position: relative;
+	z-index: 1;
+	color: #9f9f9f;
+	font: 9pt Arial;
+	padding: 10px 0px 0px 0px;
+	text-align: center;
+}
+#Sum_left_constrain{
+	width: 140px;
+	padding 2px;
+	margin: 0 0 0 8px;
+}
+
+
+
+
+
+#Sum_guy{
+	background: transparent;
+	float: left;
+	position: relative;
+	z-index: 100;
+	margin-right: -135px;
+}
+
+
+
+
+
+
+#Sum_cent{
+	float: left;
+	position: relative;
+	z-index: 1;
+}
+#Sum_cent_top{
+	background: url('/site_media/images/stats/summary/sum_cent_top.png') no-repeat 0 0;
+	width: 300px;
+	height: 89px;
+	position: relative;
+	clear: both;
+}
+#Sum_cent_left{
+	background: url('/site_media/images/stats/summary/sum_cent_left.png') no-repeat 0 0;
+	width: 255px;
+	height: 225px;
+	position: relative;
+	float: left;
+	text-align: right;
+}
+#Sum_cent_left li{
+	color: #c4c4c4;
+	list-style-type: none;
+	padding-top: 18px;
+	padding-right: 1px;
+	font: 8pt Arial;
+}
+#Sum_cent_right{
+	background: url('/site_media/images/stats/summary/sum_cent_right.png') no-repeat 0 0;
+	float: left;
+	position: relative;
+	width: 45px;
+	height: 225px;
+}
+
+div#Sum_left_constrain p
+{
+	text-align: center;
+}
+
+p#latest_achievements
+{
+	font-weight: bold;
+}
+
+span.meta
+{
+	font-size: 0.95em;
+	font-weight: bold;
+}
+
+#share
+{
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+.icon
+{
+	line-height: 20px;
+	padding:0 0 0 20px;
+	-moz-background-clip: border;
+	-moz-background-inline-policy: continuous;
+	-moz-background-origin:padding;
+}
+
+.twitter
+{
+	background: transparent url('/site_media/images/icons/twitter_16.png') no-repeat left center;
+}
+
+.facebook
+{
+	background: transparent url('/site_media/images/icons/facebook_16.png') no-repeat left center;
+}
+
+#Sum_right{
+	float:left;
+	position: relative;
+	z-index: 1;
+}
+#Sum_right_content{
+	padding: 0 40px 0 0;
+	margin: 0 0 0 0;
+}
+#Sum_right_top{
+	background: url('/site_media/images/stats/summary/sum_right_top.png') no-repeat 0 0;
+	width: 193px;
+	height: 132px;
+	padding: 12px 12px 0 12px;
+	margin: 0 0 0 0;
+	font: 10pt Arial;
+	color: #9f9f9f;
+	text-align: center;
+}
+#Sum_right_bot{
+	background: url('/site_media/images/stats/summary/sum_right_bot.png') no-repeat 0 0;
+	width: 193px;
+	height: 132px;
+	padding: 12px 12px 0 12px;
+	margin: 0 0 0 0;
+	font: 10pt Arial;
+	color: #9f9f9f;
+	text-align: center;
+}
+#Sum_sig{
+	background: transparent;
+	width: 193px;
+	height: 48px;
+	letter-spacing: 3px;
+	font: 10pt Arial;
+	color: #bcb6a3;
+	padding-left: 16px;
+}
+
+
+
+
+#Sum_bottom{
+	background: url('/site_media/images/stats/summary/sum_bottom.png') no-repeat 0 0;
+	width: 652px;
+	height: 96px;
+	clear: both;
+	position: relative;
+	z-index: 1;
+}
+#Sum_bottom_left{
+	float: left;
+}
+#Sum_bottom_cont{
+	float: left;
+}
+#Sum_bottom_right{
+	float: left;
+}

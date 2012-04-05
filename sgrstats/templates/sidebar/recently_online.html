@@ -1,0 +1,7 @@
+{% if not recently_online %}
+	<p>None</p>
+{% else %}
+	{% for user in recently_online %}
+		{% if user.1 %}<a href="{% url stats_summary account_id=user.1 %}">{{ user.0 }}</a>{% else %}{{ user.0 }}{% endif %}{% if not forloop.last %}, {% endif %}
+	{% endfor %}
+{% endif %}

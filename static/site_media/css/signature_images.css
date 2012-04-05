@@ -1,0 +1,52 @@
+table#sig_images
+{
+	margin: 0 auto;
+}
+
+table#sig_image
+{
+	margin-top: -40px;
+}
+
+table th
+{
+	width: 75px;
+}
+
+table td
+{
+	padding: 10px;
+	vertical-align: middle;
+}
+
+p.head
+{
+	font-weight: bold;
+	text-align: center;
+}
+
+div.preview
+{
+	padding-bottom: 5px;
+	text-align: center;
+}
+
+td.spacer
+{
+	padding-bottom: 10px;
+}
+
+img.copy
+{
+	vertical-align: middle;
+}
+
+img.thumb
+{
+	border: 1px solid #9d8c6f;
+}
+
+input.code
+{
+	width: 320px;
+}

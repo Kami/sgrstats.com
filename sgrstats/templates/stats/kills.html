@@ -1,0 +1,91 @@
+{% extends "stats/base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_stats" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+
+{% block content_top %}
+	{% include "stats/navigation.html" %}
+	{% include "stats/top_bar.html" %}
+{% endblock %}
+{% block content %}
+<script type="text/javascript">
+$(document).ready(function() 
+{ 
+    $('img').each(function()
+ 	{
+     	$(this).qtip(
+        {
+            content: $(this).text().toLowerCase(),
+            style:
+            {
+            	name: 'dark',
+        		textAlign: 'center',
+            	classes:
+                {
+            		content: 'tooltip_content'
+                }
+            }   
+ 	   });
+ 	});      
+});
+</script>
+<div id="statskills">
+<div id="stats_kills">
+	<div id="stats_kills_box2">
+		<div id="stats_kills_box_half1"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/p90.png" alt="Soldier's P90" /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingP90 }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledByP90 }}</span></div>
+		<div id="stats_kills_box_half2"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/grenadelauncher.png" alt="Soldier's Granade Launcher" /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingGrenadeLauncher }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledByGrenadeLauncher }}</span></div>
+	</div>
+	
+	<div id="stats_kills_box1">
+		<div id="stats_kills_box_half1"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/handdevicezap.png" alt="Fry a brain with Goa'uld Wrist Device" /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingHandDeviceZap }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledByHandDeviceZap }}</span></div>
+		<div id="stats_kills_box_half2"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/handdevicepush.png" alt="Discard someone with the Goa'uld Wrist Device" /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingHandDevicePush }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledByHandDevicePush }}</span></div>
+	</div>
+	
+	<div id="stats_kills_box2">
+		<div id="stats_kills_box_half1"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/sniperrifle.png" alt="Commando's Sniper Rifle" /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingSniperRifle }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledBySniperRifle }}</span></div>
+		<div id="stats_kills_box_half3"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/claymore.png" alt="Blow someone to bits with the Commando's Claymore." /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingClaymore }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledByClaymore }}</span></div>
+		<div id="stats_kills_box_half4"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/deserteagle.png" alt="Shoot someone down with the Commando's Desert Eagle." /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingDesertEagle }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledByDesertEagle }}</span></div>
+	</div>
+	
+	<div id="stats_kills_box1">
+		<div id="stats_kills_box_half1"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/staffblast.png" alt="Shots fired from Jaffa staff weapon" /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingStaffBlast }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledByStaffBlast }}</span></div>
+		<div id="stats_kills_box_half2"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/staffmelee.png" alt="Beat someone down with the end of your Jaffa Staf Weapon." /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingStaffMelee }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledByStaffMelee }}</span></div>
+	</div>
+	
+	<div id="stats_kills_box2">
+		<div id="stats_kills_box_half1"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/diseasecloud.png" alt="Scientist's Symboite Poison" /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingDiseaseCloud }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledByDiseaseCloud }}</span></div>
+		<div id="stats_kills_box_half3"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/turret.png" alt="Protect friendlies by placing the Scientist's turret." /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingTurret }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledByTurret }}</span></div>
+		<div id="stats_kills_box_half4"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/beretta.png" alt="Shoot someone down with the Scientist's Beretta." /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingBeretta }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledByBeretta }}</span></div>
+	</div>
+	
+	<div id="stats_kills_box1">
+		<div id="stats_kills_box_half1"><img src="{{ MEDIA_URL }}/site_media/images/stats/weapons/ashrakblade.png" alt="Ashrak's blade." /><br />
+				<span class="sgreen">{{ player_stats.SGR_Account_KillsUsingAshrakBlade }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledByAshrakBlade }}</span></div>
+		<div id="stats_kills_box_half2"></div>
+	</div>
+	
+	<div id="stats_kills_total">Total K/D : <span class="sgreen">{{ player_stats.SGR_Account_KillsTotal }}</span>/<span class="sred">{{ player_stats.SGR_Account_KilledTotal }}</span>
+	<br />K/D Ratio : <a class="tip" tip="For all the pedants: <strong>{{ player_stats.SGR_Account_KillDeathRatio }}</strong> (more or less)">{{ player_stats.SGR_Account_KillDeathRatio|floatformat:3 }}</a></div>
+	
+	<div id="stats_kills_teamicons"></div>
+</div>
+</div>
+
+{% include "stats/date_retrieved.html" %}
+{% endblock %}

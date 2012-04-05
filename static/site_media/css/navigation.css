@@ -1,0 +1,52 @@
+#mainnav{
+	width: 1000px;
+}
+#mainnav_left{
+	background: url('/site_media/images/navigation/nav_left.png') no-repeat 0 0;
+	width: 132px;
+	height: 66px;
+	float: left;
+}
+#mainnav_nav{
+	float: left;
+	width: 732;
+	height: 66px;
+}
+#mainnav_right{
+	background: url('/site_media/images/navigation/nav_right.png') no-repeat 0 0;
+	width: 133px;
+	height: 66px;
+	float: left;
+}
+
+.inivisi{
+	display: none;
+}
+.nav_break{
+	float: left;
+}
+#nav_home, #nav_servers, #nav_stats, #nav_rankings, #nav_articles, 
+#nav_polls, #nav_help, #nav_about{
+  display: block;
+  width: 102px;
+  height: 66px;
+  text-decoration: none;
+  text-align: center;
+  font: 9pt Arial;
+  line-height: 35px;
+  color: #bcb6a3;
+  float: left;
+}
+#nav_home:hover, #nav_servers:hover, 
+#nav_stats:hover, #nav_articles:hover, 
+#nav_polls:hover, #nav_help:hover, #nav_about:hover{
+background-position: 0 -66px;
+}
+#nav_home{background: url("/site_media/images/navigation/nav_home.png") no-repeat 0 0;}
+#nav_servers{background: url("/site_media/images/navigation/nav_servers.png") no-repeat 0 0;}
+#nav_stats{background: url("/site_media/images/navigation/nav_stats.png") no-repeat 0 0;}
+#nav_articles{background: url("/site_media/images/navigation/nav_articles.png") no-repeat 0 0;}
+#nav_polls{background: url("/site_media/images/navigation/nav_polls.png") no-repeat 0 0;}
+#nav_rankings{background: url("/site_media/images/navigation/nav_rankings.png") no-repeat 0 0;}
+#nav_help{background: url("/site_media/images/navigation/nav_help.png") no-repeat 0 0;}
+#nav_about{background: url("/site_media/images/navigation/nav_about.png") no-repeat 0 0;}

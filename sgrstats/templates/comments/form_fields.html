@@ -1,0 +1,22 @@
+<table class="form">
+{% for field in form %}
+	{% if field.is_hidden %}
+ 		{{ field }}
+	{% else %}
+		<tr {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+		{% if field.name == "name" %}
+			<th>{{ field.label_tag }}:</th>
+			<td><input type="text" name="name" id="id_name" value="{{ request.user.username }}" readonly="readonly" /></td>
+		{% else %}
+    		{% if field.name == "email" %}
+    			<th>{{ field.label_tag }}:</th>
+    			<td><input type="text" name="email" id="id_email" value="{{ request.user.email }}" readonly="readonly" /></td>
+    		{% else %}    		
+				    <th>{{ field.label_tag }}:</th>
+				    <td>{{ field }}</td>
+			{% endif %}
+		{% endif %}
+		</tr>
+	{% endif %}
+{% endfor %}
+</table>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block feed_urls %}<link rel="alternate" type="application/rss+xml" title="Latest articles" href="{% url articles_feed %}" />{% endblock %}
+{% block title %}Articles{% endblock %}
+
+{% block content %}
+<h1>Articles</h1>
+<p>Here you can find different tutorials, reviews, videos and articles related to Stargate Resistance.</p>
+
+{% include "articles/article_list.html" %}
+
+{% endblock %}

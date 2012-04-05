@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_news" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block feed_urls %}<link rel="alternate" type="application/rss+xml" title="Latest news" href="{% url news_feed %}" />{% endblock %}
+{% block title %}News archive{% endblock %}
+
+{% block content %}
+<div id="wrapper">
+	<div id="news">
+		<h1>News archive {% if date %}({% if year and month %}{{ date|date:"F Y" }}{% else %}{{ date|date:"Y" }}{% endif %}){% endif %}</h1>
+		{% include "news/news_list.html" %}
+	</div>
+	
+	<div id="months">
+		<h1>Months</h1>
+		{% for entry in month_year_list %}
+			<p>
+				{% if year == entry.2 and month == entry.1 %}
+					{{ entry.0|date:"F" }} {{ entry.0|date:"Y" }} ({{ entry.3 }})
+				{% else %}
+					<a href="{% url news_archive_month year=entry.2 month=entry.1 %}">{{ entry.0|date:"F" }} {{ entry.0|date:"Y" }}</a> ({{ entry.3 }})</p>
+				{% endif %}
+			</p>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

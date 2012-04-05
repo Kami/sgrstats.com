@@ -1,0 +1,10 @@
+{% if older_polls %}
+	{% for poll in older_polls %}
+		<p>
+		<span class="item_title"><a href="{% url poll_details poll_id=poll.id %}">{{ poll.question }}</a></span>
+		<span class="item_meta"><strong>{{ poll.date_published|date:"d.m.Y h:i a" }}</strong> by <strong>{{ poll.author }}</strong></span>
+		</p>
+	{% endfor %}
+{% else %}
+	<p>None.</p>
+{% endif %}

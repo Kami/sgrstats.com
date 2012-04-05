@@ -1,0 +1,61 @@
+form#search_form
+{
+	padding-top: 15px;
+}
+
+input#search_term, .pagedisplay, .pagesize
+{
+    width: 105px;
+}
+
+label
+{
+	font-weight: bold;
+}
+
+table.top_players th,
+table.top_players td
+{
+	text-align: center;
+}
+
+div#find_player
+{
+	float: left;
+	margin-bottom: 10px;
+}
+
+div#pager
+{
+	float: right;
+	margin-top: 10px;
+}
+
+input#search_term
+{
+	margin-left: 4px;
+}
+
+.pagedisplay
+{
+	margin: 0 2px 0 2px;
+}
+
+.pagesize
+{
+	width: 50px;
+}
+
+span.link
+{
+	font-size: 1.3em;
+	color: #A59E85;
+	text-decoration: underline;
+	cursor: pointer;
+	padding: 2px;
+}
+
+span.link:hover
+{
+	text-decoration: none;
+}

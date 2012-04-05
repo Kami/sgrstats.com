@@ -1,0 +1,13 @@
+{% if comment_count == 0 %}
+	<p>This news has no comments yet.</p>
+{% else %}
+{% load markup %}
+<div id="comments">
+  {% for comment in comment_list %}
+  	<div id="c{{ comment.id }}" class="comment"> 
+    <div class="meta">Written by <strong>{{ comment.name }}</strong> on <a href="{% url news_details title_slug=news.title_slug %}#c{{ comment.id }}">{{ comment.submit_date|date:"DATETIME_FORMAT" }}</a>.</div>
+    <div class="body"> <div class="content">{{ comment.comment|markdown }}</div></div>
+    </div>
+  {% endfor %}
+</div>
+{% endif %}

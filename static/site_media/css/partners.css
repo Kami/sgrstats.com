@@ -1,0 +1,13 @@
+#partners
+{
+	text-align: center;
+	margin: 0 auto;
+}
+
+#partners img
+{
+	text-align: center;
+	margin: 5px auto;
+	text-decoration: none;
+	display: block;
+}

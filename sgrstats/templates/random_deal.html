@@ -1,0 +1,16 @@
+{% if deal_type == "game" %}
+	<h1>Don't own the game yet?</h1>
+	<p>
+		<a href="{% url deal_visit deal_id=deal.id %}" target="_blank" class="deal" tip="<strong>{{ deal.title }}</strong><br />(only ${{ deal.price }})<br /><img src='/site_media/images/deals/{{ deal.image_large }}' /><br /> {{ deal.description }}">
+		<img src="{{ MEDIA_URL }}/site_media/images/deals/{{ deal.image_thumb }}" /></a>
+	</p>
+	<p>Get it now and for only ${{ deal.price }} join the Stargate adventure!</p>
+{% endif %}
+{% if deal_type == "expansion" %}
+	<h1>Already own the game?</h1>
+	<p>
+		<a href="{% url deal_visit deal_id=deal.id %}" target="_blank" class="deal" tip="<strong>{{ deal.title }}</strong><br />(only ${{ deal.price }})<br /><img src='/site_media/images/deals/{{ deal.image_large }}' /><br /> {{ deal.description }}">
+		<img src="{{ MEDIA_URL }}/site_media/images/deals/{{ deal.image_thumb }}" /></a>
+	</p>
+	<p>Get this awesome expansion pack now!</p>
+{% endif %}

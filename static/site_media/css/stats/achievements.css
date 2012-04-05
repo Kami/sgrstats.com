@@ -1,0 +1,17 @@
+#achievements
+{
+	padding-top: 60px;
+	margin-bottom: 10px;
+}
+
+table
+{
+	width: 650px;
+}
+
+#achievements table th
+{
+	color: #bcb6a3;
+	font-weight: bold;
+	font-size: 1.2em;
+}

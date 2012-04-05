@@ -1,0 +1,70 @@
+{% extends "stats/base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_stats" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+
+{% block content_top %}
+	{% include "stats/navigation.html" %}
+	{% include "stats/top_bar.html" %}
+{% endblock %}
+{% block content %}
+<div id="statssummery">
+	<div id="Sum_left">
+		<div id="Sum_left_constrain">
+			<p id="latest_achievements">Latest Achievements</p>
+				{% if latest_achievements %}
+					{% for achievement in latest_achievements %}
+						<p><a href="{% url stats_achievements account_id=account_id %}#{{ achievement.1 }}">{{ achievement.2 }}</a><br /> <span class="meta">({{ achievement.0|date:"d.m.Y" }})</span></p>
+					{% endfor %}
+				{% else %}
+					<p>None</p>
+				{% endif %}
+		</div>
+	</div>
+	<div id="Sum_guy"><img src="{{ MEDIA_URL }}/site_media/images/stats/summary/{{ top_class_image }}_main.png" alt="Your top class is a {{ top_class|capfirst }}!" />
+	</div>
+	<div id="Sum_cent">
+		<div id="Sum_cent_top"><img src="{{ MEDIA_URL }}/site_media/images/stats/summary/sum_cent_top_{{ top_class }}.png" alt="Your top class is the {{ top_class|capfirst }}!" />
+		</div>
+		<div id="Sum_cent_left"><li><span class="sgreen">{{ top_class_data.kills }}</span>/<span class="sred">{{ top_class_data.deaths }}</span></li><li><span class="sgreen">{{ top_class_data.streak }}</span></li><li><span class="sgreen">{{ top_class_data.wins }}</span>/<span class="sred">{{ top_class_data.losses }}</span></li>
+		</div>
+		<div id="Sum_cent_right">
+		</div>
+	</div>
+	<div id="Sum_right">
+		<div id="Sum_right_top"><div id="Sum_right_content"><a href="{% url stats_maps account_id=account_id %}"><img src="{{ MEDIA_URL }}/site_media/images/stats/maps/map_{{ top_map.0 }}.jpg" alt="{{ top_map.0|capfirst }}" /></a><br />
+		Top Map : <span class="sgreen">{{ top_map.0|capfirst }}<br />
+		{{ top_map.1 }} WINS</span>
+		</div></div>
+		<div id="Sum_right_bot"><div id="Sum_right_content"><a href="{% url stats_maps account_id=account_id %}"><img src="{{ MEDIA_URL }}/site_media/images/stats/maps/map_{{ worst_map.0 }}.jpg" alt="{{ worst_map.0|capfirst }}" /></a><br />
+		Worst Map : <span class="sred">{{ worst_map.0|capfirst }}<br />
+		{{ worst_map.1 }} LOSSES</span>
+		</div></div>
+		<div id="Sum_sig">
+		<a href="{% if user.get_profile.account_id and user.get_profile.dynamic_signature %}{% url account_signature_images %}{% else %}{% url account_settings %}{% endif %}">GET A SIG WITH<br />YOUR STATS >></a>
+		</div>
+	</div>
+	
+	{% if bitly_url %}
+	<div id="share">
+		<a href="http://twitter.com/?status=View my Stargate Resistance stats on #SGRStats - {{ bitly_url }}" class="icon twitter" target="_blank">Share my stats on Twitter</a> | <a href="http://www.facebook.com/share.php?u=View my Stargate Resistance stats on #SGRStats - {{ bitly_url }}" class="icon facebook" target="_blank">Share my stats on Facebook</a>
+	</div>
+	{% endif %}
+	
+	<div id="Sum_bottom">
+		<div id="Sum_bottom_left"><img src="{{ MEDIA_URL }}/site_media/images/stats/summary/sum_bottom_left_holder.png" />
+		</div>
+		<div id="Sum_bottom_cont">
+		<img src="{{ MEDIA_URL }}/site_media/images/stats/rival_easy/rival_{{ rival_class.0 }}.png" alt="Your main rival is the {{ rival_class.0|capfirst }}!" /><br /><img src="{{ MEDIA_URL }}/site_media/images/stats/rival_easy/easy_{{ easy_class.0 }}.png" alt="You kill the {{ easy_class.0|capfirst }} the most often!" />
+		</div>	
+		<div id="Sum_bottom_right"><img src="{{ MEDIA_URL }}/site_media/images/stats/summary/sum_bottom_right_holder.png" />
+		</div>
+	</div>
+</div>
+
+{% include "stats/date_retrieved.html" %}
+{% endblock %}

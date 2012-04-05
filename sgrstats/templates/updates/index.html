@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block feed_urls %}<link rel="alternate" type="application/rss+xml" title="Latest news about Stargate Resistance updates and patches" href="{% url updates_feed %}" />{% endblock %}
+{% block title %}Latest news about Stargate Resistance updates and patches{% endblock %}
+
+{% block content %}
+<h1>Latest news about Stargate Resistance updates and patches</h1>
+<p>Latest news about Stargate Resistance related updates and patches directly from the <a href="http://forums.stargateworlds.com/" target="_blank">Stargate Worlds forums</a>.</p>
+
+{% include "updates/update_list.html" %}
+{% endblock %}

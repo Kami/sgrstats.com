@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block feed_urls %}<link rel="alternate" type="application/rss+xml" title="Latest articles" href="{% url articles_feed %}" />{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ article.title }}</h1>
+<p class="article_content">
+	{{ article.content.rendered|safe }}
+</p>
+<p class="article_meta">Written by: <strong>{{ article.author }}</strong> in <strong>{% for category in article.get_categories %} <a href="{% url articles_category category_id=category.term_id %}">{{ category.term.term }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</strong> on <strong>{{ article.date_published|date:"DATETIME_FORMAT" }}</strong></p>
+{% endblock %}

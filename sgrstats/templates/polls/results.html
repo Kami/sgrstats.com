@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_poll" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block feed_urls %}<link rel="alternate" type="application/rss+xml" title="Latest polls" href="{% url polls_feed %}" />{% endblock %}
+{% block title %}{{ poll.question }}{% endblock %}
+
+{% block content %}
+{% load markup %}
+<h1>{{ poll.question }}</h1>
+<p>{{ poll.description|markdown }}</p>
+<div id="poll_results">
+{% for choice in poll.choice_set.all %}
+	<div class="option">
+		<div class="choice_title">{{ choice.choice }}</div>
+		<div class="choice_option"><div class="bar_container"><div id="bar{{ choice.id }}" class="bar_choice" style="width: {% if choice.get_vote_percentage == 0 %}1{% else %}{{ choice.get_vote_percentage }}{% endif %}%{% if choice.id == selected_choice %}; background-color: #CE4301;{% endif %}">&nbsp;</div></div><div class="percentage">{{ choice.get_vote_percentage }}%</div></div>
+	</div>
+	<br style="clear: both;" />
+{% endfor %}
+
+<p style="display: block;">Number votes: <strong>{{ vote_count }}</strong></p>
+</div>
+{% endblock %}

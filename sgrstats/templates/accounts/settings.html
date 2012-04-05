@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% load assets %}
+{% block stylesheets %}
+	{% assets "css_accounts" %}
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_URL }}" />
+	{% endassets %}
+{% endblock %}
+{% block scripts %}
+	{% assets "js_accounts" %}
+ 	 	<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+	{% endassets %}
+{% endblock %}
+{% block title %}User account settings{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+$(document).ready(function() 
+{ 
+	$('a.link_account').click(function()
+	{
+		boxyDialog = new Boxy.load('{% url account_link_form %}',
+		{
+			title: 'Link FireSky account to your profile',
+			draggable: true,
+			modal: true,
+			cache: true,
+			behaviours: function(c)
+			{
+	            c.find('#link_account').submit(function()
+	    	    {
+		    	    var account_id = c.find('#account_id').val();
+		    	    var status = c.find('#status');
+		    	    
+		    	    if (isNaN(account_id) || account_id == '')
+		    	    {
+		    	    	status.text('Invalid account ID.');
+			    	    return false;
+		    	    }
+
+		    	    status.text('Redirecting, please wait...');
+		    	    window.location = '/accounts/link_account/' + account_id + '/';
+	                return false;
+	            });
+    		}
+		});
+	});
+
+	$('input#show_on_rankings').change(function()
+	{
+		data = $('form#settings').serialize();
+		$.post('{% url account_settings_update %}', data, function(data)
+		{
+			updateMessages(data);
+		});
+	});
+
+	function updateMessages(text)
+	{
+		$('div#messages').html(text);
+	}
+});
+</script>
+<h1>User account settings</h1>
+<div id="messages">
+</div>
+{% if messages %}
+	{% for message in messages %}
+		<div id="{{ message.tags }}">{{ message|safe }}</div>
+	{% endfor %}
+{% endif %}
+
+<p>Here you can change different settings related to your user account.</p>
+<table id="settings">
+<form name="settings" id="settings">
+<tr>
+	<th>Linked account ID:</th><td>{% if user.get_profile.account_id %} <a href="{% url stats_summary account_id=user.get_profile.account_id %}">{{ user.get_profile.account_id }}</a> (<a href="{% url account_unlink_account %}">unlink</a>){% else %}<a href="javascript:void(0);" class="tip link_account" tip="You have no FireSky account linked to your website account. For information how to link an account, visit the Linking your Firesky Account page under Help.">none</a> (<a href="javascript:void(0);" class="link_account">link</a>){% endif %}</td>
+</tr>
+<tr>
+	<th>Dynamic signature:</th><td>{% if not user.get_profile.dynamic_signature %}disabled (<a href="{% url account_dynamic_signature status='enable' %}" class="tip" tip="Click here to enable dynamic signature generation">enable</a>){% else %}{% if user.get_profile.account_id %}<a href="{% url account_signature_images %}">enabled</a>{% else %}enabled{% endif %} (<a href="{% url account_dynamic_signature status='disable' %}" class="tip" tip="Click here to disable dynamic signature generation">disable</a>){% endif %}</td>
+</tr>
+{% if user.get_profile.date_signature_generated %}
+<tr>
+	<th>Last signature generated at:</th><td>{{ user.get_profile.date_signature_generated|date:"d.m.Y H:i:s"}}</td>
+</tr>
+{% endif %}
+{% if user.get_profile.account_id %}
+	<tr>
+		<th class="tip" tip="If you uncheck this check box, your name won't be publicly shown on the player rankings page">Show my name on <a href="{% url rankings_top_player %}">rankings</a> page:</th><td><input type="checkbox" name="show_on_rankings" id="show_on_rankings" value="1" {% if user.get_profile.show_on_rankings %}checked="checked"{% endif %} /></td>
+	</tr>
+{% endif %}
+</form>
+</table>
+
+<p class="notes">Note: If you you have dynamic signature enabled and no FireSky linked to your website account, image won't be generated until you link an account.</p>
+{% endblock %}
